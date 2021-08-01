@@ -4,10 +4,9 @@ import cv2
 from game.resource_manager import ResourceManager
 
 game_window = pyglet.window.Window(800, 600)
-pyglet.resource.path = ['./assets/images']
-pyglet.resource.reindex()
 
-rm = ResourceManager('background.jpg', 'MomcakeBold-WyonA.ttf', game_window.width, game_window.height)
+rm = ResourceManager(game_window.width, game_window.height)
+pyglet.clock.schedule_interval(rm.update, 0.05)
 
 @game_window.event
 def on_draw():
