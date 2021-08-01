@@ -15,8 +15,9 @@ class ResourceManager:
         self.width = width
         self.height = height
         self.background_sprite = self.pathToSprite('background.jpg', self.width, self.height)
-        self.top_label = pyglet.text.Label(text = "Words go here", color = (0,0,0,255), font_name = 'Calibri', font_size = 48,
-                            x = width // 2, y = height * 0.9, anchor_x = 'center')
+        self.border_sprite     = self.pathToSprite('border.png', self.width * 0.55, self.height * 0.55)
+        self.top_label = pyglet.text.Label(text = "Words go here", color = (232,74,39,255), font_name = 'Calibri', font_size = 48,
+                            x = width // 2, y = height * 0.85, anchor_x = 'center')
 
         
         pyglet.resource.path = ['./assets/images']
@@ -33,6 +34,7 @@ class ResourceManager:
 
     def draw(self):
         self.background_sprite.draw()
+        self.border_sprite.draw()
         self.top_label.draw()
         self.frame.draw()
 
@@ -51,3 +53,8 @@ class ResourceManager:
         cv2.destroyAllWindows()
         if os.path.exists('./assets/images/frame.jpg'):
            os.remove('./assets/images/frame.jpg')
+
+
+# make a classifier class that deals with the tensorflow stuff
+# then maybe have another engine class to actually play the game, with functions to get the
+# current classification, generate a new question, check the answer, draw / update the question
