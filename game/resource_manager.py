@@ -55,6 +55,6 @@ class ResourceManager:
            os.remove('./assets/images/frame.jpg')
 
 
-# make a classifier class that deals with the tensorflow stuff
-# then maybe have another engine class to actually play the game, with functions to get the
+# make a classifier class that deals with the tensorflow stuff DONE (note: the model is not good, it is mostly a placeholder)
+# then maybe have another engine class to actually play the game, with functions to get the  <<-- do this!
 # current classification, generate a new question, check the answer, draw / update the question
