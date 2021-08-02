@@ -1,8 +1,6 @@
 import pyglet
 import cv2
 import os
-import time
-from game.classifier import Classifier
 
 class ResourceManager:
     def __init__(self, width, height):
