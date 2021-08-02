@@ -2,6 +2,7 @@ import pyglet
 import cv2
 import os
 import time
+from game.classifier import Classifier
 
 class ResourceManager:
     def __init__(self, width, height):
@@ -19,6 +20,8 @@ class ResourceManager:
         self.top_label = pyglet.text.Label(text = "Words go here", color = (232,74,39,255), font_name = 'Calibri', font_size = 48,
                             x = width // 2, y = height * 0.85, anchor_x = 'center')
 
+        #self.classif = Classifier('./assets/converted_keras/model.h5')
+
         
         pyglet.resource.path = ['./assets/images']
         pyglet.resource.reindex()
@@ -31,6 +34,7 @@ class ResourceManager:
         cv2.imwrite('./assets/images/frame.jpg', self.f)
         self.frame = self.background_sprite
         self.frame = self.pathToSprite('frame.jpg', self.width // 2, self.height // 2)
+        #print(self.classif.classify('./assets/images/frame.jpg'))
 
     def draw(self):
         self.background_sprite.draw()
@@ -46,14 +50,12 @@ class ResourceManager:
         image.anchor_y = image.height // 2
         sprite = pyglet.sprite.Sprite(img = image, x = self.width // 2, y = self.height // 2)
         return sprite
-
-    def __del__(self):
-        print("destructing")
+    
+    def cleanUp(self):
         self.vid.release()
         cv2.destroyAllWindows()
         if os.path.exists('./assets/images/frame.jpg'):
            os.remove('./assets/images/frame.jpg')
-
 
 # make a classifier class that deals with the tensorflow stuff DONE (note: the model is not good, it is mostly a placeholder)
 # then maybe have another engine class to actually play the game, with functions to get the  <<-- do this!

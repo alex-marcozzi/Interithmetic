@@ -19,10 +19,10 @@ class Classifier:
         prediction = self.saved_model.predict(data)
         return np.argmax(prediction) + 1
 
-test = Classifier('./assets/converted_keras/model.h5')
-print("GO")
-print(test.classify('./assets/images/test_image2.jpg'))
-print(test.classify('./assets/images/test_image1.jpg'))
-print(test.classify('./assets/images/test_image1.jpg'))
-print(test.classify('./assets/images/test_image2.jpg'))
-print(test.classify('./assets/images/test_image2.jpg'))
+# test = Classifier('./assets/converted_keras/model.h5')
+# print("GO")
+# print(test.classify('./assets/images/test_image2.jpg'))
+# print(test.classify('./assets/images/test_image1.jpg'))
+# print(test.classify('./assets/images/test_image1.jpg'))
+# print(test.classify('./assets/images/test_image2.jpg'))
+# print(test.classify('./assets/images/test_image2.jpg'))
