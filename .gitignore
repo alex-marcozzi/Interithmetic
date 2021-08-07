@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# project specific
+game/model_test.py
+game/testo.py
+assets/images/test*

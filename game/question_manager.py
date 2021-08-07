@@ -11,15 +11,16 @@ class QuestionManager:
         self.second_number = 0
         self.third_number  = 0
         self.operation     = self.ADDITION
+        self.GenerateQuestion()
     
     def GenerateQuestion(self):
         self.first_number  = random.randint(1, 100)
-        self.second_number = random.randint(1, 10)
+        self.second_number = random.randint(1, 5)
         self.operation     = random.randint(self.ADDITION, self.MULTIPLICATION)
 
         # prevent negative answers
-        if self.operation == self.SUBTRACTION and self.first_number <= 10:
-            self.first_number += 10
+        if self.operation == self.SUBTRACTION and self.first_number <= 5:
+            self.first_number += 5
         self.third_number  = self.calculateThird()
     
     def calculateThird(self):
@@ -38,5 +39,16 @@ class QuestionManager:
         else:
             return '*'
     
-    def questionToString(self):
-        return str(self.first_number) + ' ' + self.opToString() + ' ' + str(self.second_number) + ' = ' + str(self.third_number)
+    def questionToString(self, showAnswer):
+        q = str(self.first_number) + ' ' + self.opToString() + ' '
+        if showAnswer:
+            q += str(self.second_number) + ' '
+        else:
+            q += '? '
+        q += '= ' + str(self.third_number)
+
+        return q
+        #return str(self.first_number) + ' ' + self.opToString() + ' ' + str(self.second_number) + ' = ' + str(self.third_number)
+
+    def getAnswer(self):
+        return self.second_number
