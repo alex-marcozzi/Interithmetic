@@ -11,9 +11,9 @@ class QuestionManager:
         self.second_number = 0
         self.third_number  = 0
         self.operation     = self.ADDITION
-        self.GenerateQuestion()
+        self.generateQuestion()
     
-    def GenerateQuestion(self):
+    def generateQuestion(self):
         self.first_number  = random.randint(1, 100)
         self.second_number = random.randint(1, 5)
         self.operation     = random.randint(self.ADDITION, self.MULTIPLICATION)
