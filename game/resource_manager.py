@@ -52,6 +52,9 @@ class ResourceManager:
         #self.top_label.draw()
         self.frame.draw()
 
+    def setBorderColor(self, color):
+        self.border_rec.color = color
+
     def pathToSprite(self, path, width, height):
         image = pyglet.resource.image(path)
         image.width    = width
