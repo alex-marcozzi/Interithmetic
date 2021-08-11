@@ -15,7 +15,7 @@ class QuestionManager:
     
     def generateQuestion(self):
         self.first_number  = random.randint(1, 100)
-        self.second_number = random.randint(1, 5)
+        self.second_number = random.randint(1, 2)  # CHANGE THIS BACK TO 5
         self.operation     = random.randint(self.ADDITION, self.MULTIPLICATION)
 
         # prevent negative answers
