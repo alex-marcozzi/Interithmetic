@@ -1,5 +1,6 @@
 import pyglet
 import numpy as np
+import game.audio as audio
 from game.classifier import Classifier
 from game.resource_manager import ResourceManager
 from game.question_manager import QuestionManager
@@ -24,6 +25,7 @@ class Engine:
         self.sample_counts = [0 for i in range(6)]
         self.question_over = False
         self.time_left     = self.QUESTION_TIME
+
         
         self.top_label = pyglet.text.Label(text = "Words", color = self.ORANGE, font_name = 'Calibri', font_size = 48,
                            x = width // 2, y = height * 0.85, anchor_x = 'center')
@@ -35,10 +37,15 @@ class Engine:
         self.time_label = pyglet.text.Label(text = "Time: " + str(self.time_left), color = self.ORANGE, font_name = 'Calibri', font_size = 36,
                            x = width * 0.85, y = height * 0.85, anchor_x = 'center')
 
-        self.drums = pyglet.media.load('./assets/sfx/drumroll.mp3', streaming=False)
-        self.cheer = pyglet.media.load('./assets/sfx/cheer.mp3')
-        self.awwww = pyglet.media.load('./assets/sfx/awwww.mp3')
-        
+        self.music = pyglet.media.Player()
+        self.music.queue(audio.music[0])
+
+        self.newQuestion(0)
+
+        # self.drums = pyglet.media.load('./assets/sfx/drumroll.mp3', streaming=False)
+        # self.cheer = pyglet.media.load('./assets/sfx/cheer.mp3')
+        # self.awwww = pyglet.media.load('./assets/sfx/awwww.mp3')
+
         pyglet.clock.schedule_once(self.endQuestion, self.QUESTION_TIME)
         pyglet.clock.schedule_interval(self.tickTimer, 1)
     
@@ -75,18 +82,17 @@ class Engine:
         self.question_over = True
         self.time_left = 0
         self.time_label.text = "Time: " + str(self.time_left)
-        self.drums.play()
+        self.music.pause()
+        audio.drums.play()
         pyglet.clock.schedule_once(self.checkAnswer, self.REVEAL_TIME)
 
     def checkAnswer(self, dt):
         if self.response == self.qm.getAnswer():
             self.setUIColor(self.GREEN)
-            self.cheer.play()
-            print("You got it right! The answer was " + str(self.response) + ".")
+            audio.cheer.play()
         else:
             self.setUIColor(self.RED)
-            self.awwww.play()
-            print("You got it wrong! You really thought the answer was " + str(self.response) + "?!?!")
+            audio.awwww.play()
         self.q_label.text = self.qm.questionToString(True)
         pyglet.clock.schedule_once(self.newQuestion, self.DOWN_TIME)
     
@@ -96,6 +102,9 @@ class Engine:
         self.setUIColor(self.ORANGE)
         self.question_over = False
         self.time_left = self.QUESTION_TIME
+        self.music.queue(audio.randomSong())
+        self.music.next_source()
+        self.music.play()
         pyglet.clock.schedule_once(self.endQuestion, self.QUESTION_TIME)
 
     def tickTimer(self, dt):
