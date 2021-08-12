@@ -2,7 +2,7 @@ import pyglet
 import numpy as np
 import game.audio as audio
 from game.classifier import Classifier
-from game.resource_manager import ResourceManager
+from game.video_manager import VideoManager
 from game.question_manager import QuestionManager
 
 class Engine:
@@ -18,10 +18,10 @@ class Engine:
 
         self.width         = width
         self.height        = height
-        self.rm            = ResourceManager(width, height)
+        self.rm            = VideoManager(width, height)
         self.classifier    = Classifier('./assets/converted_keras/model.h5')
         self.qm            = QuestionManager()
-        self.counter       = 0
+        self.frame_counter = 0
         self.sample_counts = [0 for i in range(6)]
         self.question_over = False
         self.time_left     = self.QUESTION_TIME
@@ -50,15 +50,15 @@ class Engine:
         pyglet.clock.schedule_interval(self.tickTimer, 1)
     
     def update(self, dt):
-        self.counter += 1
+        self.frame_counter += 1
         self.rm.update(dt)
         if (self.question_over == False):
             self.sample_counts[self.classifier.classify('./assets/images/frame.jpg')] += 1
-            if (self.counter >= self.NUM_SAMPLES):
+            if (self.frame_counter >= self.NUM_SAMPLES):
                 self.response = np.argmax(self.sample_counts)
                 self.response_label.text = str(self.response)
                 self.sample_counts = [0 for i in range(6)]
-                self.counter = 0
+                self.frame_counter = 0
         #print(self.response)
         # self.qm.update(response)
 

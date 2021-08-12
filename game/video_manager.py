@@ -2,7 +2,7 @@ import pyglet
 import cv2
 import os
 
-class ResourceManager:
+class VideoManager:
     def __init__(self, width, height):
         self.BLUE   = (19,41,75)
         self.ORANGE = (232,74,39)
