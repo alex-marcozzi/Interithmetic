@@ -1,11 +1,12 @@
 import pyglet
 import cv2
 import os
+import game.colors as colors
 
 class VideoManager:
     def __init__(self, width, height):
-        self.BLUE   = (19,41,75)
-        self.ORANGE = (232,74,39)
+        # colors.BLUE   = (19,41,75)
+        # colors.ORANGE = (232,74,39)
         self.batch = pyglet.graphics.Batch()
 
         f = open("./assets/images/frame.jpg", "a")
@@ -17,10 +18,11 @@ class VideoManager:
 
         self.width = width
         self.height = height
-        self.background_sprite = self.pathToSprite('background.jpg', self.width, self.height)
-        self.border_sprite     = self.pathToSprite('border.png', self.width * 0.55, self.height * 0.55)
-        self.background_rec = pyglet.shapes.Rectangle(0, 0, self.width, self.height, color = self.BLUE, batch = self.batch)
-        self.border_rec = pyglet.shapes.Rectangle(self.width // 2, self.height // 2, self.width * 0.55, self.height * 0.55, color = self.ORANGE, batch = self.batch)
+        self.blank_sprite = self.pathToSprite('background.jpg', self.width, self.height)
+        self.frame = self.blank_sprite
+        #self.border_sprite     = self.pathToSprite('border.png', self.width * 0.55, self.height * 0.55)
+        self.background_rec = pyglet.shapes.Rectangle(0, 0, self.width, self.height, color = colors.BLUE[:3], batch = self.batch)
+        self.border_rec = pyglet.shapes.Rectangle(self.width // 2, self.height // 2, self.width * 0.55, self.height * 0.55, color = colors.ORANGE[:3], batch = self.batch)
         self.border_rec.anchor_x = self.border_rec.width // 2
         self.border_rec.anchor_y = self.border_rec.height // 2
         # self.border_rec.x = self.width // 2
@@ -40,7 +42,7 @@ class VideoManager:
     def update(self, dt):
         ret, self.f = self.vid.read()
         cv2.imwrite('./assets/images/frame.jpg', self.f)
-        self.frame = self.background_sprite
+        self.frame = self.blank_sprite
         self.frame = self.pathToSprite('frame.jpg', self.width // 2, self.height // 2)
         #print(self.classif.classify('./assets/images/frame.jpg'))
 
@@ -53,7 +55,7 @@ class VideoManager:
         self.frame.draw()
 
     def setBorderColor(self, color):
-        self.border_rec.color = color
+        self.border_rec.color = color[:3]
 
     def pathToSprite(self, path, width, height):
         image = pyglet.resource.image(path)
