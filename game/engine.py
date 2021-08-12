@@ -8,7 +8,7 @@ from game.question_manager import QuestionManager
 from game.label_manager import LabelManager
 
 class Engine:
-    def __init__(self, width, height):
+    def __init__(self, width, height, num_questions):
         # colors.ORANGE        = (232,74,39,255)
         # colors.GREEN         = (0,255,0,255)
         # colors.RED           = (255,0,0,255)
@@ -18,17 +18,20 @@ class Engine:
         self.REVEAL_TIME   = 2.5  # the time between the question ending and the answer being reveled
         self.DOWN_TIME     = 3  # the time between the answer being revealed and a new question starting
 
-        self.width         = width
-        self.height        = height
-        self.vm            = VideoManager(width, height)
-        self.classifier    = Classifier('./assets/converted_keras/model.h5')
-        self.qm            = QuestionManager()
-        self.lm            = LabelManager(width, height, self.QUESTION_TIME)
-        self.frame_counter = 0
-        self.sample_counts = [0 for i in range(6)]
-        self.question_over = False
-        self.time_left     = self.QUESTION_TIME
+        self.width           = width
+        self.height          = height
+        self.num_questions   = num_questions
+        self.question_number = 0
+        self.num_correct     = 0
+        self.frame_counter   = 0
+        self.sample_counts   = [0 for i in range(6)]
+        self.time_left       = self.QUESTION_TIME
+        self.question_over   = False
 
+        self.vm              = VideoManager(width, height)
+        self.classifier      = Classifier('./assets/converted_keras/model.h5')
+        self.qm              = QuestionManager()
+        self.lm              = LabelManager(width, height, self.QUESTION_TIME, self.num_questions)
         
         # self.top_label = pyglet.text.Label(text = "Words", color = colors.ORANGE, font_name = 'Calibri', font_size = 48,
         #                    x = width // 2, y = height * 0.85, anchor_x = 'center')
@@ -49,7 +52,7 @@ class Engine:
         # self.cheer = pyglet.media.load('./assets/sfx/cheer.mp3')
         # self.awwww = pyglet.media.load('./assets/sfx/awwww.mp3')
 
-        pyglet.clock.schedule_once(self.endQuestion, self.QUESTION_TIME)
+        #pyglet.clock.schedule_once(self.endQuestion, self.QUESTION_TIME)
         pyglet.clock.schedule_interval(self.tickTimer, 1)
     
     def update(self, dt):
@@ -94,6 +97,8 @@ class Engine:
     def checkAnswer(self, dt):
         if self.response == self.qm.getAnswer():
             self.setUIColor(colors.GREEN)
+            self.num_correct += 1
+            self.lm.score_label.text = str(self.num_correct) + ' / ' + str(self.num_questions)
             audio.cheer.play()
         else:
             self.setUIColor(colors.RED)
@@ -102,8 +107,10 @@ class Engine:
         pyglet.clock.schedule_once(self.newQuestion, self.DOWN_TIME)
     
     def newQuestion(self, dt):
+        self.question_number += 1
         self.qm.generateQuestion()
         self.lm.q_label.text = self.qm.questionToString(False)
+        self.lm.top_label.text = "Question " + str(self.question_number)
         self.setUIColor(colors.ORANGE)
         self.question_over = False
         self.time_left = self.QUESTION_TIME
