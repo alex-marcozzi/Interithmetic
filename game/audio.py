@@ -29,8 +29,7 @@ def randomSong():
 
 
 # NOTES
-# So the actual game part is pretty much done, you should add more music though, maybe like 5 - 10 tracks total.
-# Of course, you still need to train the model with the full range of answers as well. I think you can probably
+# You still need to train the model with the full range of answers as well. I think you can probably
 # start working on the menus, so maybe add a MenuEngine class or something, which will work a lot like in SSB2,
 # with an enum class for knowing what the game state is (MAIN, CREDITS, DIFFICULTY_SELECT, PAUSED, PLAYING).
 # Also, add another parameter to the Engine constructor, which is the number of seconds per questions. This can
