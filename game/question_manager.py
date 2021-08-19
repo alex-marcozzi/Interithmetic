@@ -48,7 +48,6 @@ class QuestionManager:
         q += '= ' + str(self.third_number)
 
         return q
-        #return str(self.first_number) + ' ' + self.opToString() + ' ' + str(self.second_number) + ' = ' + str(self.third_number)
 
     def getAnswer(self):
         return self.second_number
