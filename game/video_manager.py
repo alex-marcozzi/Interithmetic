@@ -23,7 +23,7 @@ class VideoManager:
         self.border_rec.anchor_x = self.border_rec.width // 2
         self.border_rec.anchor_y = self.border_rec.height // 2
 
-        self.vid = cv2.VideoCapture(0)
+        self.vid = cv2.VideoCapture(0, cv2.CAP_DSHOW)
         self.update(0)
 
     def update(self, dt):
