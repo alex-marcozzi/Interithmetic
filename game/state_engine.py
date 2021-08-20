@@ -19,6 +19,10 @@ class StateEngine:
         self.state = State.MAIN
         self.engine = Engine(width, height)
         self.background_rec = pyglet.shapes.Rectangle(0, 0, self.width, self.height, color = colors.BLUE[:3], batch = self.batch)
+        self.back_label = pyglet.text.Label(text = "< Back", color = colors.ORANGE, font_name = 'Calibri', font_size = 36,
+                                x = self.width * 0.15, y = self.height * 0.10, anchor_x = 'center')
+        self.pause_label = pyglet.text.Label(text = "Pause", color = colors.ORANGE, font_name = 'Calibri', font_size = 36,
+                                x = self.width * 0.15, y = self.height * 0.10, anchor_x = 'center')
         self.createMainLabels()
         self.createDSLabels()
         self.createCreditsLabels()
@@ -72,6 +76,8 @@ class StateEngine:
             self.drawCreditsScreen()
         elif self.state == State.PLAYING:
             self.engine.draw()
+            if self.engine.question_over == False:
+                self.pause_label.draw()
         elif self.state == State.PAUSED:
             self.drawPausedScreen()
 
@@ -86,6 +92,7 @@ class StateEngine:
         self.dso1_label.draw()
         self.dso2_label.draw()
         self.dso3_label.draw()
+        self.back_label.draw()
     
     def drawCreditsScreen(self):
         self.credits_label.draw()
@@ -93,22 +100,15 @@ class StateEngine:
         self.co2_label.draw()
         self.co3_label.draw()
         self.co4_label.draw()
+        self.back_label.draw()
 
     def drawPausedScreen(self):
         self.paused_label.draw()
         self.po1_label.draw()
 
-    #def update(self):
-        #if self.state == State.MAIN:
-        #    self.updateMainScreen()
-        # elif self.state == State.DIFFICULTY_SELECT:
-        #     self.updateDSScreen()
-        # elif self.state == State.CREDITS:
-        #     self.updateCreditsScreen()
-        # elif self.state == State.PLAYING:
-        #     self.engine.update()
-        # elif self.state == State.PAUSED:
-        #     self.updatePausedScreen()
+    def update(self, dt):
+        if self.state == State.PLAYING:
+            self.engine.update(dt)
         
     def handleClick(self, x, y, button, modifiers):
         if button != mouse.LEFT:
@@ -120,12 +120,11 @@ class StateEngine:
             self.handleClickDS(x, y)
         elif self.state == State.CREDITS:
             self.handleClickCredits(x, y)
-        # elif self.state == State.PLAYING:
-        #     self.engine.update()
+        elif self.state == State.PLAYING:
+            self.handleClickPlaying(x, y)
         elif self.state == State.PAUSED:
             self.handleClickPaused(x, y)
-        
-    
+            
     def handleClickMain(self, x, y):
         if self.labelIsClicked(self.mo1_label, x, y):
             self.state = State.DIFFICULTY_SELECT
@@ -136,24 +135,33 @@ class StateEngine:
 
     def handleClickDS(self, x, y):
         if self.labelIsClicked(self.dso1_label, x, y):
-            print("ds1")
+            self.engine.startGame(5, 8)
+            self.state = State.PLAYING
         elif self.labelIsClicked(self.dso2_label, x, y):
             print("ds2")
         elif self.labelIsClicked(self.dso3_label, x, y):
             print("ds3")
+        elif self.labelIsClicked(self.back_label, x, y):
+            self.state = State.MAIN
 
     def handleClickCredits(self, x, y):
-        # add a back button
-        # if self.labelIsClicked(self.back_label, x, y):
-        #     print("credits back")
-        return
+        if self.labelIsClicked(self.back_label, x, y):
+            self.state = State.MAIN
+    
+    def handleClickPlaying(self, x, y):
+        if self.engine.question_over == True:
+            return
+        if self.labelIsClicked(self.pause_label, x, y):
+            self.engine.pause()
+            self.state = State.PAUSED
     
     def handleClickPaused(self, x, y):
         if self.labelIsClicked(self.po1_label, x, y):
-            print("resuming")
+            self.engine.resume()
+            self.state = State.PLAYING
     
     def labelIsClicked(self, label, x, y):
-        # we do these calculations because label's anchor point is is the middle
+        # these calculations are because label's anchor point is is the middle
         start_x = label.x - label.content_width // 2
         end_x   = label.x + label.content_width // 2
         start_y = label.y - label.content_height // 2

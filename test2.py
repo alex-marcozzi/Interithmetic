@@ -7,7 +7,7 @@ from game.state_engine import StateEngine
 game_window = pyglet.window.Window(800, 600)
 
 state_engine = StateEngine(game_window.width, game_window.height)
-#pyglet.clock.schedule_interval(engine.update, 0.05)
+pyglet.clock.schedule_interval(state_engine.update, 0.05)
 
 # maybe add this for menu option highlighting as a stretch goal
 # @game_window.event
