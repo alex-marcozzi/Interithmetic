@@ -29,9 +29,8 @@ def randomSong():
 
 
 # NOTES
-# You still need to train the model with the full range of answers as well. I think you can probably
-# start working on the menus, so maybe add a MenuEngine class or something, which will work a lot like in SSB2,
-# with an enum class for knowing what the game state is (MAIN, CREDITS, DIFFICULTY_SELECT, PAUSED, PLAYING).
-# Also, add another parameter to the Engine constructor, which is the number of seconds per questions. This can
-# be used to implement difficutly settings, like 30 seconds for easy, 10 seconds for normal, and 5 for hard, or
-# something like that. 
+# Make it so that the game actually ends when you finish the final question. Maybe have a end screen like
+# SSB2. Also, add music to the main menu (if you can find the music BORE.D uses, that would be great).
+# Don't forget to train the model with the other three numbers (3, 4, and 5).
+# If you really want to, you can make the question generation in question_manger more complex, with more numbers
+# so that you have to do more calculations to actually get the answer. Maybe not necessary though.

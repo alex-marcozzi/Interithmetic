@@ -61,10 +61,12 @@ class StateEngine:
                                 x = self.width // 2, y = self.height * 0.20, anchor_x = 'center')
         
     def createPausedLabels(self):
-        self.paused_label = pyglet.text.Label(text = "Paused", color = colors.ORANGE, font_name = 'Calibri', font_size = 80,
+        self.paused_label = pyglet.text.Label(text = "Paused", color = colors.ORANGE, font_name = 'Calibri', font_size = 100,
                                 x = self.width // 2, y = self.height * 0.80, anchor_x = 'center')
         self.po1_label = pyglet.text.Label(text = "Resume", color = colors.ORANGE, font_name = 'Calibri', font_size = 64,
-                                x = self.width // 2, y = self.height * 0.40, anchor_x = 'center')
+                                x = self.width // 2, y = self.height * 0.50, anchor_x = 'center')
+        self.po2_label = pyglet.text.Label(text = "Main Menu", color = colors.ORANGE, font_name = 'Calibri', font_size = 52,
+                                x = self.width // 2, y = self.height * 0.30, anchor_x = 'center')
     
     def draw(self):
         self.background_rec.draw()
@@ -105,6 +107,7 @@ class StateEngine:
     def drawPausedScreen(self):
         self.paused_label.draw()
         self.po1_label.draw()
+        self.po2_label.draw()
 
     def update(self, dt):
         if self.state == State.PLAYING:
@@ -135,12 +138,14 @@ class StateEngine:
 
     def handleClickDS(self, x, y):
         if self.labelIsClicked(self.dso1_label, x, y):
-            self.engine.startGame(5, 8)
+            self.engine.startGame(10, 20)
             self.state = State.PLAYING
         elif self.labelIsClicked(self.dso2_label, x, y):
-            print("ds2")
+            self.engine.startGame(10, 10)
+            self.state = State.PLAYING
         elif self.labelIsClicked(self.dso3_label, x, y):
-            print("ds3")
+            self.engine.startGame(10, 5)
+            self.state = State.PLAYING
         elif self.labelIsClicked(self.back_label, x, y):
             self.state = State.MAIN
 
@@ -159,6 +164,8 @@ class StateEngine:
         if self.labelIsClicked(self.po1_label, x, y):
             self.engine.resume()
             self.state = State.PLAYING
+        elif self.labelIsClicked(self.po2_label, x, y):
+            self.state = State.MAIN
     
     def labelIsClicked(self, label, x, y):
         # these calculations are because label's anchor point is is the middle
