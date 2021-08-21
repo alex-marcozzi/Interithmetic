@@ -95,6 +95,7 @@ class Engine:
         self.sample_counts   = [0 for i in range(6)]
         self.time_left       = self.question_time
         self.question_over   = False
+        self.game_over       = False
 
         self.lm.score_label.text = str(self.num_correct) + ' / ' + str(self.num_questions)
 
