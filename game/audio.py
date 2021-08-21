@@ -10,6 +10,7 @@ awwww = pyglet.media.load('./assets/sfx/awwww.mp3', streaming=False)
 
 # music
 music = [
+    pyglet.media.load('./assets/music/garden.mp3', streaming=False),    # www.youtube.com/watch?v=SnFqblwmIoA
     pyglet.media.load('./assets/music/jeopardy.mp3', streaming=False),  # Jeopardy song
     pyglet.media.load('./assets/music/rose.mp3', streaming=False),      # Rondo Brothers, Yellow Flower of Berkely
     pyglet.media.load('./assets/music/thinking.mp3', streaming=False),  # Kevin MacLeod, Thinking Music
@@ -24,13 +25,17 @@ music = [
 
 # convenience functions
 def randomSong():
-    return music[random.randint(0,len(music)-1)]
+    return music[random.randint(1,len(music)-1)]
 
 
 
 # NOTES
-# Make it so that the game actually ends when you finish the final question. Maybe have a end screen like
-# SSB2. Also, add music to the main menu (if you can find the music BORE.D uses, that would be great).
-# Don't forget to train the model with the other three numbers (3, 4, and 5).
+#
+# Train the model with the other three numbers (3, 4, and 5).
+#
 # If you really want to, you can make the question generation in question_manger more complex, with more numbers
 # so that you have to do more calculations to actually get the answer. Maybe not necessary though.
+#
+# Clean up code + add comments.
+#
+# DONE

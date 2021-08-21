@@ -24,6 +24,7 @@ class Engine:
         self.sample_counts   = [0 for i in range(6)]
         self.time_left       = self.question_time
         self.question_over   = False
+        self.game_over       = False
 
         # the time when the checkAnswer, newQuestion, and endQuestion functions were scheduled
         self.ca_time = 0
@@ -40,6 +41,11 @@ class Engine:
         self.qm              = QuestionManager()
         self.lm              = LabelManager(width, height, self.question_time, self.num_questions)
 
+        self.end_label = pyglet.text.Label(text = "Score: 0 / 10", color = colors.ORANGE, font_name = 'Calibri', font_size = self.width * 0.10,
+                                x = width // 2, y = height * 0.60, anchor_x = 'center')
+        self.end_return_label = pyglet.text.Label(text = "Main Menu", color = colors.ORANGE, font_name = 'Calibri', font_size = self.width * 0.06,
+                                x = width // 2, y = height * 0.40, anchor_x = 'center')
+
         # self.music = pyglet.media.Player()
         # self.music.queue(audio.music[0])
 
@@ -48,6 +54,14 @@ class Engine:
         # pyglet.clock.schedule_interval(self.tickTimer, 1)
     
     def update(self, dt):
+        if self.game_over:
+            return
+
+        if self.question_number > self.num_questions:
+            self.end_label.text = "Score: " + str(self.num_correct) + " / " + str(self.num_questions)
+            self.game_over = True
+            return
+
         self.frame_counter += 1
         self.vm.update(dt)
         #if (self.question_over == False):
@@ -62,8 +76,15 @@ class Engine:
             self.endQuestion(0)
 
     def draw(self):
-        self.vm.draw()
-        self.lm.draw()
+        if self.game_over:
+            self.drawEndScreen()
+        else:
+            self.vm.draw()
+            self.lm.draw()
+    
+    def drawEndScreen(self):
+        self.end_label.draw()
+        self.end_return_label.draw()
     
     def startGame(self, num_questions, question_time):
         self.num_questions   = num_questions
@@ -78,7 +99,7 @@ class Engine:
         self.lm.score_label.text = str(self.num_correct) + ' / ' + str(self.num_questions)
 
         self.music = pyglet.media.Player()
-        self.music.queue(audio.music[0])
+        self.music.queue(audio.music[1])
 
         self.newQuestion(0)
 
