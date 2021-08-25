@@ -1,3 +1,8 @@
+# Title: engine.py
+# Description: Contains the Engine class for Interithmetic.
+# Author: Alexander Marcozzi
+# Date: 08/25/2021
+
 import pyglet
 import numpy as np
 import time
@@ -9,10 +14,31 @@ from game.question_manager import QuestionManager
 from game.label_manager import LabelManager
 
 class Engine:
+    """
+    A class that handles moment-to-moment gameplay.
+
+    All "magic numbers" and formulas were acquired from manual testing.
+
+    ...
+
+    Attributes
+    ----------
+    NUM_SAMPLES : int
+        the number of sample images taken from the webcam before making a classification
+    REVEAL_TIME : double
+        the time between the question ending and the answer being revealed
+    DOWN_TIME : int
+        the time between the answer being revealed and a new question starting
+    
+    Methods
+    -------
+    update(dt)
+        Updates the game (dt is unused but necessary for pyglet scheduling)
+    """
     def __init__(self, width, height):
         self.NUM_SAMPLES   = 10
-        self.REVEAL_TIME   = 2.5  # the time between the question ending and the answer being reveled
-        self.DOWN_TIME     = 3    # the time between the answer being revealed and a new question starting
+        self.REVEAL_TIME   = 2.5
+        self.DOWN_TIME     = 3
 
         self.width           = width
         self.height          = height

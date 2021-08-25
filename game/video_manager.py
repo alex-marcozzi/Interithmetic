@@ -19,7 +19,7 @@ class VideoManager:
         self.blank_sprite = self.pathToSprite('background.jpg', self.width, self.height)
         self.frame = self.blank_sprite
         self.background_rec = pyglet.shapes.Rectangle(0, 0, self.width, self.height, color = colors.BLUE[:3], batch = self.batch)
-        self.border_rec = pyglet.shapes.Rectangle(self.width // 2, self.height // 2, self.width * 0.55, self.height * 0.55, color = colors.ORANGE[:3], batch = self.batch)
+        self.border_rec = pyglet.shapes.Rectangle(self.width // 2, self.height // 2, self.height * 0.55 * 1.33, self.height * 0.55, color = colors.ORANGE[:3], batch = self.batch)
         self.border_rec.anchor_x = self.border_rec.width // 2
         self.border_rec.anchor_y = self.border_rec.height // 2
 
@@ -30,7 +30,7 @@ class VideoManager:
         ret, self.f = self.vid.read()
         cv2.imwrite('./assets/images/frame.jpg', self.f)
         self.frame = self.blank_sprite
-        self.frame = self.pathToSprite('frame.jpg', self.width // 2, self.height // 2)
+        self.frame = self.pathToSprite('frame.jpg', (self.height // 2) * 1.33, self.height // 2)
 
     def draw(self):
         self.background_rec.draw()
