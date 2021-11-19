@@ -67,6 +67,10 @@ class StateEngine:
         Updates the game (dt is unused but necessary for pyglet scheduling)
     draw(screen)
         Draws the current state onto the screen
+    handleClick(x, y, button, modifiers)
+        Handles click events
+    cleanUp()
+        Cleans up various objects and files
     """
     
     def __init__(self, width, height):
