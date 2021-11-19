@@ -1,7 +1,7 @@
 # Title: engine.py
 # Description: Contains the Engine class for Interithmetic.
 # Author: Alexander Marcozzi
-# Date: 08/25/2021
+# Date: 11/19/2021
 
 import pyglet
 import numpy as np
@@ -311,6 +311,7 @@ class Engine:
         dt : int
             Unused but necessary for pyglet scheduling
         """
+
         if self.time_left != 0:
             self.time_left -= 1
             self.lm.time_label.text = "Time: " + str(self.time_left)

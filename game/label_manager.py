@@ -115,6 +115,7 @@ class LabelManager:
         color : tuple(4)
             the color to set the labels to, in RGBA format (0-255 for each)
         """
+        
         self.top_label.color      = color
         self.q_label.color        = color
         self.response_label.color = color

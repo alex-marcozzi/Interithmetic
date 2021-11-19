@@ -1,7 +1,7 @@
 # Title: state_engine.py
 # Description: Contains the StateEngine class for Interithmetic.
 # Author: Alexander Marcozzi
-# Date: 08/21/2021
+# Date: 11/19/2021
 
 import pyglet
 import game.colors as colors
@@ -109,7 +109,7 @@ class StateEngine:
 
         self.main_label = pyglet.text.Label(text = "Interithmetic", color = colors.ORANGE, font_name = 'Calibri', font_size = self.width * 0.10,
                                 x = self.width // 2, y = self.height * 0.80, anchor_x = 'center')
-        self.mo1_label = pyglet.text.Label(text = "Play", color = colors.ORANGE, font_name = 'Calibri', font_size = self.width * 0.08,
+        self.mo1_label = pyglet.text.Label(text = "Play", color = colors.ORANGE, font_name = 'Calibri', font_size = self.width * 0.11,
                                 x = self.width // 2, y = self.height * 0.60, anchor_x = 'center')
         self.mo2_label = pyglet.text.Label(text = "Credits", color = colors.ORANGE, font_name = 'Calibri', font_size = self.width * 0.08,
                                 x = self.width // 2, y = self.height * 0.40, anchor_x = 'center')
