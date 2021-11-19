@@ -1,4 +1,7 @@
-# module file for audio
+# Title: audio.py
+# Description: Module file for audio used in Interithmetic.
+# Author: Alexander Marcozzi
+# Date: 11/19/2021
 
 import pyglet
 import random
@@ -25,17 +28,8 @@ music = [
 
 # convenience functions
 def randomSong():
+    """
+    Randomly selects a song and returns it.
+    """
+
     return music[random.randint(1,len(music)-1)]
-
-
-
-# NOTES
-#
-# Train the model with the other three numbers (3, 4, and 5).
-#
-# If you really want to, you can make the question generation in question_manger more complex, with more numbers
-# so that you have to do more calculations to actually get the answer. Maybe not necessary though.
-#
-# Clean up code + add comments.
-#
-# DONE
