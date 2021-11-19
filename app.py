@@ -1,3 +1,8 @@
+# Title: app.py
+# Description: Main driver file for Interithmetic.
+# Author: Alexander Marcozzi
+# Date: 11/19/2021
+
 from os import stat
 import pyglet
 from pyglet.window import mouse
