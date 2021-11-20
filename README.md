@@ -26,20 +26,20 @@ Once you have begun a game, you will be given a simple equation with one of the 
 ### Music
 (YouTube links are not where the in-game audio is from, but rather just for reference.)
 
-**Main Menu**
+**Main Menu**\
 ["English Country Garden" by (Unknown)](www.youtube.com/watch?v=SnFqblwmIoA)
 
-**In-Game**
-["Think!" from Jeopardy](https://www.youtube.com/watch?v=0Wi8Fv0AJA4)
-["Yellow Flower of Berkeley" by Rondo Brothers](https://www.youtube.com/watch?v=mblYsFzC0n4)
-["Thinking Music" by Kevin MacLeod](https://www.youtube.com/watch?v=8SIrVXr9hjA)
-["Checkpoint" by Nitro Fun](https://www.youtube.com/watch?v=_cB3HXVvm0g)
-["Last 7 Letters" by oneohkay](https://www.youtube.com/watch?v=zy5q8WLmGzE)
-["Moon" by Gecko&Tokage Parade](https://www.youtube.com/watch?v=tl3zGGPq-lw)
-["Beat Laments the World" by Nujabes](https://www.youtube.com/watch?v=TuvKDNOVfJk)
-["Prayer" by Nujabes](https://www.youtube.com/watch?v=CHNK16jumew)
-["Rush" by The Seatbelts](https://www.youtube.com/watch?v=XtxsYF4e3uM)
-["Bad Dog No Biscuit" by The Seatbelts](https://www.youtube.com/watch?v=mDqW81sDGLg)
+**In-Game**\
+["Think!" from Jeopardy](https://www.youtube.com/watch?v=0Wi8Fv0AJA4)\
+["Yellow Flower of Berkeley" by Rondo Brothers](https://www.youtube.com/watch?v=mblYsFzC0n4)\
+["Thinking Music" by Kevin MacLeod](https://www.youtube.com/watch?v=8SIrVXr9hjA)\
+["Checkpoint" by Nitro Fun](https://www.youtube.com/watch?v=_cB3HXVvm0g)\
+["Last 7 Letters" by oneohkay](https://www.youtube.com/watch?v=zy5q8WLmGzE)\
+["Moon" by Gecko&Tokage Parade](https://www.youtube.com/watch?v=tl3zGGPq-lw)\
+["Beat Laments the World" by Nujabes](https://www.youtube.com/watch?v=TuvKDNOVfJk)\
+["Prayer" by Nujabes](https://www.youtube.com/watch?v=CHNK16jumew)\
+["Rush" by The Seatbelts](https://www.youtube.com/watch?v=XtxsYF4e3uM)\
+["Bad Dog No Biscuit" by The Seatbelts](https://www.youtube.com/watch?v=mDqW81sDGLg)\
 
 ****
 
