@@ -39,7 +39,7 @@ Once you have begun a game, you will be given a simple equation with one of the 
 ["Beat Laments the World" by Nujabes](https://www.youtube.com/watch?v=TuvKDNOVfJk)\
 ["Prayer" by Nujabes](https://www.youtube.com/watch?v=CHNK16jumew)\
 ["Rush" by The Seatbelts](https://www.youtube.com/watch?v=XtxsYF4e3uM)\
-["Bad Dog No Biscuit" by The Seatbelts](https://www.youtube.com/watch?v=mDqW81sDGLg)\
+["Bad Dog No Biscuit" by The Seatbelts](https://www.youtube.com/watch?v=mDqW81sDGLg)
 
 ****
 
