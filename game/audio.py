@@ -15,7 +15,7 @@ awwww = pyglet.media.load('./assets/sfx/awwww.mp3', streaming=False)
 music = [
     pyglet.media.load('./assets/music/garden.mp3', streaming=False),    # www.youtube.com/watch?v=SnFqblwmIoA
     pyglet.media.load('./assets/music/jeopardy.mp3', streaming=False),  # Jeopardy song
-    pyglet.media.load('./assets/music/rose.mp3', streaming=False),      # Rondo Brothers, Yellow Flower of Berkely
+    pyglet.media.load('./assets/music/rose.mp3', streaming=False),      # Rondo Brothers, Yellow Flower of Berkeley
     pyglet.media.load('./assets/music/thinking.mp3', streaming=False),  # Kevin MacLeod, Thinking Music
     pyglet.media.load('./assets/music/nitro.mp3', streaming=False),     # Nitro Fun, Checkpoint
     pyglet.media.load('./assets/music/last7.mp3', streaming=False),     # oneohkay, Last 7 Letters
